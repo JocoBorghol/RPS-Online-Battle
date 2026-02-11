@@ -123,60 +123,71 @@ body.arena-desert .game-board { background: linear-gradient(rgba(0,0,0,0.6), rgb
     75% { transform: rotate(-20deg) translateY(-15px); } 
 }
 
-/* --- MOBILANPASSNING (Media Queries) --- */
+/* --- FIXAD MOBILANPASSNING (Media Queries) --- */
 @media (max-width: 768px) {
     
-    /* Låt body skrolla om innehållet blir för högt på små skärmar */
-    body { overflow-y: auto; height: auto; min-height: 100vh; }
-
-    /* Lobbyn: Gör den smalare och minska padding */
-    .lobby-content { width: 90%; padding: 20px; }
-    .lobby-buttons { flex-direction: column; }
-
-    /* Spelplanen: Stapla spelare och motståndare vertikalt */
-    .game-board { flex-direction: column; height: auto; padding-top: 80px; }
-    .zone { width: 100%; padding: 10px; }
-
-    /* Minska storleken på avatarer */
-    .avatar { width: 80px; height: 80px; }
-    .name { font-size: 18px; }
-
-    /* Minska händerna så de inte tar upp hela skärmen */
-    .hand-icon { font-size: 80px; }
-    .hand-display { margin-top: 10px; }
-    .choice-text { font-size: 20px; min-height: 25px; }
-
-    /* Flytta statistikpanelen så den inte täcker avataren */
-    .stats-panel { 
-        position: relative; top: 0; left: 0; 
-        width: 90%; margin: 10px auto; 
-        display: flex; justify-content: space-around; 
+    body { 
+        overflow-y: auto; 
+        height: auto; 
+        min-height: 100vh; 
     }
-    .stats-panel h3 { display: none; } /* Göm rubriken för att spara plats */
-    .stat-row { margin: 0; font-size: 12px; }
 
-    /* Mittenpanelen (Runda/Meddelanden) */
-    .center-panel { position: relative; transform: none; left: 0; top: 0; margin: 20px 0; }
-    .game-info { padding: 15px; width: 80%; }
-    #round-display { font-size: 22px; }
-    #game-message { font-size: 14px; }
+    /* Lobbyn */
+    .lobby-content { width: 90%; padding: 20px; }
+    .lobby-buttons { flex-direction: column; gap: 10px; }
 
-    /* Timer: Gör den lite mindre */
-    #timer-container { width: 60px; height: 60px; }
-    #timer-text { font-size: 24px; }
+    /* Spelplanen: Stapla vertikalt */
+    .game-board { 
+        flex-direction: column; 
+        height: auto; 
+        padding-top: 60px; /* Plats för stats högst upp */
+        min-height: 600px;
+    }
+    .zone { width: 100%; padding: 10px; gap: 5px; }
 
-    /* Kontroller: Gör knapparna mindre så alla får plats i bredd */
-    .controls-container { height: 120px; gap: 10px; padding: 0 10px; }
-    .game-btn { width: 85px; height: 90px; }
-    .game-btn .btn-icon { font-size: 35px; }
-    
-    /* Spela igen-knappen */
-    #restart-btn { padding: 12px 30px; font-size: 18px; }
+    /* Avatarer och namn */
+    .avatar { width: 70px; height: 70px; }
+    .name { font-size: 16px; margin-top: 5px; }
+
+    /* Händer */
+    .hand-icon { font-size: 70px; }
+    .choice-text { font-size: 18px; min-height: 20px; }
+
+    /* Statistikpanelen (Högst upp) */
+    .stats-panel { 
+        position: fixed; top: 0; left: 0; 
+        width: 100%; border-radius: 0; border: none; border-bottom: 2px solid #ffd700;
+        display: flex; justify-content: space-around; padding: 10px 0;
+        box-sizing: border-box;
+    }
+    .stats-panel h3 { display: none; }
+    .stat-row { font-size: 12px; margin: 0; }
+
+    /* Mittenpanelen */
+    .center-panel { position: relative; transform: none; left: 0; top: 0; margin: 15px 0; }
+    .game-info { padding: 10px; width: 90%; margin: 0 auto; }
+    #round-display { font-size: 20px; }
+
+    /* KONTROLLER (Här var felet) */
+    .controls-container { 
+        height: auto; /* Låt containern växa med knapparna */
+        padding: 15px 5px;
+        gap: 10px; 
+        position: sticky; bottom: 0; /* Håll dem synliga längst ner */
+        background: #0a0a0a;
+    }
+    .game-btn { 
+        width: 30%; /* Tre knappar på rad */
+        height: 80px; 
+        min-width: 80px;
+        font-size: 12px;
+    }
+    .game-btn .btn-icon { font-size: 30px; }
 }
 
-/* Extra anpassning för extremt små skärmar */
-@media (max-width: 400px) {
-    .game-btn { width: 70px; height: 80px; }
-    .hand-icon { font-size: 60px; }
-    .avatar { width: 60px; height: 60px; }
+/* För extremt små skärmar */
+@media (max-width: 360px) {
+    .game-btn { height: 70px; }
+    .game-btn .btn-icon { font-size: 25px; }
+    .avatar { width: 55px; height: 55px; }
 }
