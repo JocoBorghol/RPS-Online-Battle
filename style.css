@@ -1,0 +1,124 @@
+/* Grundinställningar */
+body {
+    margin: 0; padding: 0;
+    background-color: #1e272e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh; display: flex; flex-direction: column;
+    overflow: hidden; user-select: none; color: white;
+}
+
+.hidden { display: none !important; }
+
+/* --- LOBBY --- */
+#lobby-screen {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: radial-gradient(circle, #2c3e50, #000);
+    z-index: 100; display: flex; align-items: center; justify-content: center;
+}
+.lobby-content {
+    background: rgba(0,0,0,0.85); padding: 40px; border-radius: 20px;
+    border: 2px solid #ffd700; text-align: center; width: 400px;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+}
+.lobby-section { margin-bottom: 20px; text-align: left; }
+.lobby-section label { display: block; margin-bottom: 5px; color: #aaa; font-size: 14px; }
+input, select {
+    width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #555; 
+    background: #222; color: white; font-size: 16px; box-sizing: border-box;
+}
+.mini-avatar-select { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.mini-avatar-select img {
+    width: 55px; height: 55px; border: 2px solid #444; cursor: pointer; border-radius: 8px; object-fit: cover; transition: 0.2s;
+}
+.mini-avatar-select img:hover, .mini-avatar-select img.selected { 
+    border-color: #2ecc71; transform: scale(1.1); box-shadow: 0 0 10px #2ecc71;
+}
+.lobby-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 25px; }
+
+/* --- ARENOR & BAKGRUNDER --- */
+/* Här har jag lagt till stöd för bakgrundsbilder om du vill lägga till dem senare */
+.game-board { flex-grow: 1; position: relative; display: flex; width: 100%; transition: background 0.5s; background-size: cover; background-position: center; }
+
+body.arena-default .game-board { background: radial-gradient(circle, #333, #000); }
+body.arena-lava .game-board { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/lava-bg.jpg'), #400; background-size: cover; }
+body.arena-forest .game-board { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/forest-bg.jpg'), #030; background-size: cover; }
+body.arena-ice .game-board { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/ice-bg.jpg'), #003; background-size: cover; }
+body.arena-desert .game-board { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/desert-bg.jpg'), #530; background-size: cover; }
+
+/* --- NY STATISTIK RUTA (Kompakt) --- */
+.stats-panel {
+    position: absolute; top: 20px; left: 20px; width: 180px;
+    background: rgba(0, 0, 0, 0.6); 
+    border: 2px solid #ffd700; border-radius: 10px; padding: 15px;
+    z-index: 5; box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+.stats-panel h3 { margin: 0 0 10px 0; font-size: 14px; color: #ffd700; text-transform: uppercase; border-bottom: 1px solid #555; padding-bottom: 5px; }
+.stat-row { font-size: 14px; margin-bottom: 5px; display: flex; justify-content: space-between; font-weight: bold; }
+#stat-wins { color: #2ecc71; }
+#stat-losses { color: #e74c3c; }
+#stat-total-score { color: #3498db; }
+
+/* --- TIMER --- */
+#timer-container { margin: 0 auto 15px auto; width: 80px; height: 80px; position: relative; pointer-events: none; }
+#timer-circle {
+    width: 100%; height: 100%; border-radius: 50%; background: rgba(0,0,0,0.8);
+    border: 6px solid #2ecc71; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.5); transition: all 0.3s ease;
+}
+#timer-text { font-size: 32px; font-weight: bold; color: white; }
+
+/* --- ZONER & AVATARER --- */
+.zone { width: 50%; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.avatar-container { text-align: center; }
+.avatar { width: 150px; height: 150px; border: 4px solid #ffd700; border-radius: 20px; object-fit: cover; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: transform 0.3s; }
+.avatar:hover { transform: scale(1.05); }
+
+.score { background: rgba(0,0,0,0.7); padding: 5px 15px; border-radius: 20px; font-weight: bold; color: #ffd700; margin-top: 5px; border: 1px solid #ffd700; }
+.name { font-size: 24px; font-weight: 800; margin-top: 10px; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0,0,0,0.9); letter-spacing: 2px; }
+.player-name { color: #2ecc71; } 
+.enemy-name { color: #e74c3c; }
+
+/* --- HÄNDER --- */
+.hand-display { margin-top: 30px; text-align: center; }
+.choice-text { font-size: 28px; font-weight: 900; min-height: 40px; margin-bottom: 5px; text-transform: uppercase; color: #aaa; }
+.hand-icon { font-size: 140px; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.8)); transition: transform 0.2s; }
+
+/* --- MITTENPANEL --- */
+.center-panel { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20; text-align: center; width: 100%; pointer-events: none; }
+.game-info { background: rgba(0,0,0,0.9); padding: 25px 50px; border-radius: 20px; border: 2px solid #ffd700; display: inline-block; box-shadow: 0 0 60px rgba(0,0,0,0.9); }
+#round-display { margin: 0; color: #ffd700; font-size: 32px; text-transform: uppercase; }
+#game-message { font-size: 18px; color: #eee; margin-top: 10px; font-weight: bold; }
+
+#game-over-panel { pointer-events: auto; margin-top: 25px; }
+
+/* Spela Igen Knapp */
+#restart-btn {
+    background: linear-gradient(45deg, #f1c40f, #d35400); border: none; color: white; padding: 18px 50px; 
+    font-size: 24px; font-weight: 900; border-radius: 50px; cursor: pointer; box-shadow: 0 0 30px rgba(241, 196, 15, 0.4);
+    text-transform: uppercase; letter-spacing: 2px; animation: pulse 2s infinite; transition: 0.2s;
+}
+#restart-btn:hover { transform: scale(1.1); filter: brightness(1.2); }
+#restart-btn:disabled { background: #555; box-shadow: none; animation: none; cursor: not-allowed; opacity: 0.7; }
+
+/* --- KNAPPAR (CONTROLS) --- */
+.controls-container { height: 160px; background: #0a0a0a; display: flex; justify-content: center; align-items: center; gap: 30px; border-top: 5px solid #222; }
+.game-btn { 
+    background: linear-gradient(to bottom, #34495e, #2c3e50); color: white; border: none;
+    width: 120px; height: 120px; border-radius: 20px; cursor: pointer; font-weight: bold; 
+    border-bottom: 6px solid #1a252f; transition: 0.1s; display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.game-btn:hover { transform: translateY(-5px); border-bottom-width: 10px; filter: brightness(1.3); }
+.game-btn:active { transform: translateY(2px); border-bottom-width: 2px; }
+.game-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+.game-btn .btn-icon { font-size: 50px; margin-bottom: 5px; }
+
+/* Animationer */
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(241, 196, 15, 0); } 100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); } }
+
+.shake { animation: shakeAnim 1.5s ease-in-out infinite; }
+@keyframes shakeAnim { 
+    0%, 100% { transform: rotate(0deg) translateY(0); } 
+    25% { transform: rotate(-20deg) translateY(-15px); } 
+    50% { transform: rotate(20deg) translateY(15px); } 
+    75% { transform: rotate(-20deg) translateY(-15px); } 
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS Battle Online - Firebase Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="lobby-screen">
+        <div class="lobby-content">
+            <h1>⚔️ RPS BATTLE ONLINE ⚔️</h1>
+            
+            <div class="lobby-section">
+                <label>Ditt Hjältenamn:</label>
+                <input type="text" id="username-input" placeholder="Vad heter din hjälte?">
+            </div>
+
+            <div class="lobby-section">
+                <label>Match-kod (Rums-ID):</label>
+                <input type="text" id="room-input" placeholder="T.ex. 123">
+            </div>
+
+            <div class="lobby-section">
+                <label>Välj Arena:</label>
+                <select id="arena-select">
+                    <option value="arena-default">Mörk Grotta</option>
+                    <option value="arena-lava">Lavahavet 🔥</option>
+                    <option value="arena-forest">Förtrollad Skog 🌲</option>
+                    <option value="arena-ice">Isberget ❄️</option>
+                    <option value="arena-desert">Öknen ☀️</option>
+                </select>
+            </div>
+
+            <div class="lobby-section">
+                <label>Välj Avatar:</label>
+                <div class="mini-avatar-select" id="lobby-avatar-grid"></div>
+                <p id="selected-avatar-name" style="color:#2ecc71; font-weight:bold;">Hero</p>
+            </div>
+
+            <div class="lobby-buttons">
+                <button class="game-btn" onclick="createRoom()">SKAPA RUM</button>
+                <button class="game-btn" onclick="joinRoom()">GÅ MED</button>
+            </div>
+            <p id="lobby-status">Redo att spela...</p>
+        </div>
+    </div>
+
+    <div class="game-board hidden">
+        <div class="stats-panel">
+            <h3>DIN KARRIÄR</h3>
+            <div class="stat-row">🏆 Vinster: <span id="stat-wins">0</span></div>
+            <div class="stat-row">💀 Förluster: <span id="stat-losses">0</span></div>
+            <div class="stat-row">⭐ Poäng: <span id="stat-total-score">0</span></div>
+        </div>
+
+        <div class="center-panel">
+            <div id="timer-container" class="hidden">
+                <div id="timer-circle"><span id="timer-text">10</span></div>
+            </div>
+
+            <div class="game-info">
+                <h2 id="round-display">Väntar...</h2>
+                <div id="game-message">GÖR DITT DRAG!</div>
+            </div>
+            
+            <div id="game-over-panel" class="hidden">
+                <button id="restart-btn" onclick="voteRematch()">SPELA IGEN</button>
+            </div>
+        </div>
+
+        <div class="player-zone zone">
+            <div class="avatar-container">
+                <img src="" alt="Hero" id="player-img" class="avatar">
+                <div class="name player-name">JAG</div>
+                <div class="score">Poäng: <span id="player-score">0</span></div>
+            </div>
+            <div class="hand-display">
+                <div id="player-choice-text" class="choice-text">REDO</div>
+                <div id="player-hand" class="hand-icon">🤘🏽</div>
+            </div>
+        </div>
+
+        <div class="enemy-zone zone">
+            <div class="avatar-container">
+                <img src="" alt="Enemy" id="enemy-img" class="avatar">
+                <div class="name enemy-name">MOTSTÅNDARE</div>
+                <div class="score">Poäng: <span id="enemy-score">0</span></div>
+            </div>
+            <div class="hand-display">
+                <div id="enemy-choice-text" class="choice-text">REDO</div>
+                <div id="enemy-hand" class="hand-icon">🤘🏽</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls-container hidden" id="controls">
+        <button class="game-btn" onclick="playGame('sten')"><span class="btn-icon">✊🏽</span>Sten</button>
+        <button class="game-btn" onclick="playGame('sax')"><span class="btn-icon">✌🏽</span>Sax</button>
+        <button class="game-btn" onclick="playGame('pase')"><span class="btn-icon">✋🏽</span>Påse</button>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

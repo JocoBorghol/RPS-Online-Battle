@@ -1,0 +1,9 @@
+{
+  "rules": {
+    ".read": "now < 1741824000000",
+    ".write": "now < 1741824000000",
+    "rooms": {
+      ".indexOn": ["status"]
+    }
+  }
+}

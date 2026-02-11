@@ -1,0 +1,10 @@
+# Lokala inställningar
+.DS_Store
+thumbs.db
+
+# Firebase loggar
+firebase-debug.log*
+.firebase/
+
+# Om du skulle börja använda npm i framtiden
+node_modules/
